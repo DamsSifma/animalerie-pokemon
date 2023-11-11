@@ -1,0 +1,26 @@
+.titre {
+    text-align: center;
+}
+
+.ligne {
+    text-align: center;
+}
+.cadre-image {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 25px;
+    background-color:   #eaeeed;   
+    border-style: solid;
+    border-radius: 20%;
+    border-color: lightgrey;
+}
+
+/* .container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;    
+    height: auto;
+} */
