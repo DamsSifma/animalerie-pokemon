@@ -2,6 +2,11 @@
 {% load static %}
 {% block content %}
 <div class="page-header">
+        {% if message != None %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+        {% endif %}
     <h1>
         {% if character.type == "Feu" %}
             <span style="color: red;">{{ character.id_character }}</span>
@@ -17,14 +22,14 @@
             est dans l'arène
             
         {% endif %}
-        {% if character.lieu.id_equip == "arene" %}
+        {% comment %} {% if character.lieu.id_equip == "arene" %}
         <h2>Autres Pokémons dans l'arène:</h2>
         <ul>
             {% for other_character in pokemons_lieu %}
                     <li>{{ other_character}}</li>
             {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} {% endcomment %}
         {% if character.lieu.id_equip == "nid" %}
             est dans le nid
         {% endif %}
