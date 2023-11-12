@@ -10,22 +10,24 @@ def character_detail(request, id_character):
     character = get_object_or_404(Character, id_character=id_character)
     if request.method == "POST":
         ancien_lieu = get_object_or_404(Equipement, id_equip=character.lieu.id_equip)
-        print("ancien lieu : ", ancien_lieu)
+        # print("ancien lieu : ", ancien_lieu)
         form = MoveForm(request.POST, instance=character)
         if form.is_valid():
             form.save(commit="False")
             nouveau_lieu = get_object_or_404(Equipement, id_equip=character.lieu.id_equip)
-            print("nouveau lieu : ", nouveau_lieu)
-            print("dispo : ", nouveau_lieu.disponibilite)
+            # print("nouveau lieu : ", nouveau_lieu)
+            # print("dispo : ", nouveau_lieu.disponibilite)
             if nouveau_lieu.disponibilite == "libre":
                 nombre_lieu = Character.objects.filter(lieu=nouveau_lieu).count()
-                print("nombre dans le lieu : ", nombre_lieu)
+                # print("nombre dans le lieu : ", nombre_lieu)
                 if nombre_lieu > nouveau_lieu.taille_max - 1: # On regarde si le lieu se rempli
                     nouveau_lieu.disponibilite = "occupé"
                 nouveau_lieu.save()
                 ancien_lieu.disponibilite = "libre"
                 ancien_lieu.save()
             else:
+                character.lieu = ancien_lieu
+                character.save()
                 return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': "Le lieu est occupé"})
                 
 
