@@ -3,7 +3,35 @@
 {% block content %}
 <div class="page-header">
     <h1>
-        <a href="/">{{ character.id_character }}</a>
+        {% if character.type == "Feu" %}
+            <span style="color: red;">{{ character.id_character }}</span>
+        {% elif character.type == "Eau" %}
+            <span style="color: blue;">{{ character.id_character }}</span>
+        {% elif character.type == "Plante" %}
+            <span style="color: green;">{{ character.id_character }}</span>
+        {% else %}
+            <span>{{ character.id_character }}</span>
+        {% endif %}
+
+        {% if character.lieu.id_equip == "arene" %}
+            est dans l'arène
+            
+        {% endif %}
+        {% if character.lieu.id_equip == "arene" %}
+        <h2>Autres Pokémons dans l'arène:</h2>
+        <ul>
+            {% for other_character in pokemons_lieu %}
+                    <li>{{ other_character}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if character.lieu.id_equip == "nid" %}
+            est dans le nid
+        {% endif %}
+        {% if character.lieu.id_equip == "infirmerie" %}
+            est à l'infirmerie
+        {% endif %}
+        
     </h1>
     <div class= "ligne">
         <img class ="cadre-image col-md-6" src={{ character.photo }} alt="Image du Pokémon">
@@ -12,7 +40,7 @@
     <form method="POST" class="post-form">{% csrf_token %}
         <b> Changer : </b> {{ form.as_ul }}
         <button type="submit" class="btn btn-primary m-2">OK</button>
-        <a href="{% url 'character_list' %}">Back</a>
+        <a class="btn btn-secondary" href="{% url 'character_list' %}">Retour</a>
     </form>
 </div>
 {% endblock %}
