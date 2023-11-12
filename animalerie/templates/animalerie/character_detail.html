@@ -5,6 +5,10 @@
     <h1>
         <a href="/">{{ character.id_character }}</a>
     </h1>
+    <div class= "ligne">
+        <img class ="cadre-image col-md-6" src={{ character.photo }} alt="Image du Pokémon">
+        <img class ="cadre-image col-md-6" src={{ character.lieu.photo }} alt="Image du lieu">
+    </div>
     <form method="POST" class="post-form">{% csrf_token %}
         <b> Changer : </b> {{ form.as_ul }}
         <button type="submit" class="btn btn-primary m-2">OK</button>
