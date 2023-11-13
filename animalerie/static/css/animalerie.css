@@ -1,6 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+
 .titre {
     text-align: center;
-    margin-top: 50px;
+    padding-bottom: 10px;
+}
+
+.barre {
+    background-color:  #0075BE;
+    color: #FFCC00;
+    margin-bottom: 10px;
 }
 
 .pokemon-titre {
@@ -20,6 +28,6 @@
     background-color:   #eaeeed;   
     border-style: solid;
     border-radius: 20%;
-    border-color: blue;
+    border-color: lightgrey;
 }
 

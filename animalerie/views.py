@@ -15,11 +15,8 @@ def character_detail(request, id_character):
         if form.is_valid():
             form.save(commit="False")
             nouveau_lieu = get_object_or_404(Equipement, id_equip=character.lieu.id_equip)
-            # print("nouveau lieu : ", nouveau_lieu)
-            # print("dispo : ", nouveau_lieu.disponibilite)
             if nouveau_lieu.disponibilite == "libre":
                 nombre_lieu = Character.objects.filter(lieu=nouveau_lieu).count()
-                # print("nombre dans le lieu : ", nombre_lieu)
                 if nombre_lieu > nouveau_lieu.taille_max - 1: # On regarde si le lieu se rempli
                     nouveau_lieu.disponibilite = "occupé"
                 nouveau_lieu.save()
@@ -31,7 +28,7 @@ def character_detail(request, id_character):
                 occupants = Character.objects.filter(lieu=nouveau_lieu)
                 occupants_names = ", ".join([o.id_character for o in occupants])
                 print(occupants_names)
-                message = f"Le lieu est occupé par {occupants_names}"
+                message = f"Le lieu est déjà occupé par {occupants_names}"
                 return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': message})
                 
 
