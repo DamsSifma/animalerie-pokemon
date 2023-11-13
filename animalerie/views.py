@@ -8,9 +8,10 @@ def character_list(request):
 
 def character_detail(request, id_character):
     character = get_object_or_404(Character, id_character=id_character)
+    ancien_lieu = get_object_or_404(Equipement, id_equip=character.lieu.id_equip)
+    # print("ancien lieu : ", ancien_lieu)
+    characters_dans_lieu = Character.objects.filter(lieu=ancien_lieu)
     if request.method == "POST":
-        ancien_lieu = get_object_or_404(Equipement, id_equip=character.lieu.id_equip)
-        # print("ancien lieu : ", ancien_lieu)
         form = MoveForm(request.POST, instance=character)
         if form.is_valid():
             form.save(commit="False")
@@ -29,7 +30,7 @@ def character_detail(request, id_character):
                 occupants_names = ", ".join([o.id_character for o in occupants])
                 print(occupants_names)
                 message = f"Le lieu est déjà occupé par {occupants_names}"
-                return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': message})
+                return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': message, 'characters_dans_lieu': characters_dans_lieu})
                 
 
                 
@@ -39,4 +40,4 @@ def character_detail(request, id_character):
         form = MoveForm()
         return render(request,
                     'animalerie/character_detail.html',
-                    {'character': character, 'lieu': character.lieu, 'form': form})
+                    {'character': character, 'lieu': character.lieu, 'form': form, 'characters_dans_lieu': characters_dans_lieu})

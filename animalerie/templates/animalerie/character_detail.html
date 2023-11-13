@@ -20,8 +20,6 @@
 
         {% if character.lieu.id_equip == "arene" %}
             est dans l'arène
-            
-        {% endif %}
         {% comment %} {% if character.lieu.id_equip == "arene" %}
         <h2>Autres Pokémons dans l'arène:</h2>
         <ul>
@@ -30,14 +28,18 @@
             {% endfor %}
         </ul>
         {% endif %} {% endcomment %}
-        {% if character.lieu.id_equip == "nid" %}
+        {% elif character.lieu.id_equip == "nid" %}
             est dans le nid
-        {% endif %}
-        {% if character.lieu.id_equip == "infirmerie" %}
+        {% elif character.lieu.id_equip == "infirmerie" %}
             est à l'infirmerie
+        {% else %}
+            lieu : character.lieu.id_equip
         {% endif %}
         
+
+        
     </h1>
+</div>
     <div class= "ligne">
         <img class ="cadre-image col-md-6" src={{ character.photo }} alt="Image du Pokémon">
         <img class ="cadre-image col-md-6" src={{ character.lieu.photo }} alt="Image du lieu">
@@ -47,5 +49,27 @@
         <button type="submit" class="btn btn-primary m-2">OK</button>
         <a class="btn btn-secondary" href="{% url 'character_list' %}">Retour</a>
     </form>
-</div>
+    <h2> Autres Pokémons dans le lieu :</h2>
+    <div class ="row">
+        {% for other_character in characters_dans_lieu %}
+        {% if other_character.id_character != character.id_character %}
+            <div class="col-md-6 col-lg-3">
+                <p>
+                    {% if other_character.type == "Feu" %}
+                        <span style="color: red;">{{ other_character.id_character }}</span>
+                    {% elif other_character.type == "Eau" %}
+                        <span style="color: blue;">{{ other_character.id_character }}</span>
+                    {% elif other_character.type == "Plante" %}
+                        <span style="color: green;">{{ other_character.id_character }}</span>
+                    {% else %}
+                        <span>{{ other_character.id_character }}</span>
+                    {% endif %}
+                </p>
+
+                    <img class ="cadre-image col-md-6" src={{ other_character.photo }} alt="Image du Pokémon">
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
 {% endblock %}
