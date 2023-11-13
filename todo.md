@@ -1,3 +1,2 @@
-Utiliser bootstrap dans le projet (colonnes pour l'affichage des Pokémons)
-CSS container pour les images et les informations
-Partie forms du TA
+Message d'erreur si 
+Donner la liste des autres occupants du lieu (et pouvoir aller sur leurs pages respectives)

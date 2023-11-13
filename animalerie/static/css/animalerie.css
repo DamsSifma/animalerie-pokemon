@@ -1,5 +1,10 @@
 .titre {
     text-align: center;
+    margin-top: 50px;
+}
+
+.pokemon-titre {
+    font-family: 'Pokemon Solid', sans-serif; 
 }
 
 .ligne {
@@ -15,6 +20,6 @@
     background-color:   #eaeeed;   
     border-style: solid;
     border-radius: 20%;
-    border-color: lightgrey;
+    border-color: blue;
 }
 

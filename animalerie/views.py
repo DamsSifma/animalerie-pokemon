@@ -28,7 +28,11 @@ def character_detail(request, id_character):
             else:
                 character.lieu = ancien_lieu
                 character.save()
-                return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': "Le lieu est occupé"})
+                occupants = Character.objects.filter(lieu=nouveau_lieu)
+                occupants_names = ", ".join([o.id_character for o in occupants])
+                print(occupants_names)
+                message = f"Le lieu est occupé par {occupants_names}"
+                return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': message})
                 
 
                 
