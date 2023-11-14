@@ -29,11 +29,13 @@
         </ul>
         {% endif %} {% endcomment %}
         {% elif character.lieu.id_equip == "nid" %}
-            est dans le nid
+            se repose
         {% elif character.lieu.id_equip == "infirmerie" %}
             est à l'infirmerie
+        {% elif character.lieu.id_equip == "mangeoire" %}
+            est en train de manger  
         {% else %}
-            lieu : character.lieu.id_equip
+            lieu : {{character.lieu.id_equip}}
         {% endif %}
         
 
