@@ -42,9 +42,14 @@
         
     </h1>
 </div>
-    <div class= "ligne">
-        <img class ="cadre-image col-md-6" src={{ character.photo }} alt="Image du Pokémon">
-        <img class ="cadre-image col-md-6" src={{ character.lieu.photo }} alt="Image du lieu">
+    <div class= "row ligne">
+        <div class="col-md-3">
+            <img class ="cadre-image" src={{ character.photo }} alt="Image du Pokémon">
+            <p> Etat : {{character.etat}} </p>
+        </div>
+        <div class="col-md-3">
+            <img class ="cadre-image" src={{ character.lieu.photo }} alt="Image du lieu">
+        </div>
     </div>
     <form method="POST" class="post-form">{% csrf_token %}
         <b> Changer : </b> {{ form.as_ul }}

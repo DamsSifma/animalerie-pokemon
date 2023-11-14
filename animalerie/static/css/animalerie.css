@@ -8,7 +8,6 @@
 .barre {
     background-color:  #0075BE;
     color: #FFCC00;
-    margin-bottom: 10px;
 }
 
 .pokemon-titre {
@@ -18,6 +17,7 @@
 
 .ligne {
     text-align: center;
+    justify-content: center;
 }
 .cadre-image {
     width: 250px;
