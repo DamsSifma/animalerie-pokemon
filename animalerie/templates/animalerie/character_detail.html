@@ -14,6 +14,8 @@
             <span style="color: blue;">{{ character.id_character }}</span>
         {% elif character.type == "Plante" %}
             <span style="color: green;">{{ character.id_character }}</span>
+        {% elif character.type == "Electrique" %}
+            <span style="color: rgb(255, 220, 100);">{{ character.id_character }}</span>
         {% else %}
             <span>{{ character.id_character }}</span>
         {% endif %}
@@ -33,6 +35,7 @@
         {% elif character.lieu.id_equip == "infirmerie" %}
             est à l'infirmerie
         {% elif character.lieu.id_equip == "mangeoire" %}
+
             est en train de manger  
         {% else %}
             lieu : {{character.lieu.id_equip}}
@@ -68,6 +71,8 @@
                         <span style="color: blue;">{{ other_character.id_character }}</span>
                     {% elif other_character.type == "Plante" %}
                         <span style="color: green;">{{ other_character.id_character }}</span>
+                    {% elif other_character.type == "Electrique" %}
+                        <span style="color: rgb(255, 220, 100);">{{ other_character.id_character }}</span>
                     {% else %}
                         <span>{{ other_character.id_character }}</span>
                     {% endif %}
