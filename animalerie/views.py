@@ -25,11 +25,11 @@ def character_detail(request, id_character):
             if nouveau_lieu.disponibilite == "libre":
                 print("nouveau lieu est bien libre")
                 nombre_lieu = Character.objects.filter(lieu=nouveau_lieu).count()
-                print(character.etat != "repus")
+                print(character.etat != "repu")
                 print("arene", nouveau_lieu == "arene")
 
                 # Si il n'est pas en état d'aller dans l'arène
-                if nouveau_lieu.id_equip == "arene" and character.etat != "repus":
+                if nouveau_lieu.id_equip == "arene" and character.etat != "repu":
                     print("n'est pas en état d'aller dans l'arène")
                     message = f"{character.id_character} n'est pas en état pour aller dans l'arène"
                     return render(request, 'animalerie/character_detail.html', {'character': character, 'lieu': character.lieu, 'form': form, 'message': message, 'characters_dans_lieu': characters_dans_lieu})
@@ -42,9 +42,9 @@ def character_detail(request, id_character):
                 ancien_lieu.disponibilite = "libre"
                 ancien_lieu.save()
 
-                # si il est repus et dans l'arene
+                # si il est repu et dans l'arene
                 print("nouveau_lieu : " + nouveau_lieu.id_equip)
-                if nouveau_lieu.id_equip == "arene" and character.etat == "repus":
+                if nouveau_lieu.id_equip == "arene" and character.etat == "repu":
                     if randint(0, 1):
                         character.etat = "fatigué"
                     else:
@@ -61,7 +61,7 @@ def character_detail(request, id_character):
                     character.etat = "affamé"
                     character.save()
                 elif nouveau_lieu.id_equip == "mangeoire" and character.etat == "affamé":
-                    character.etat = "repus"
+                    character.etat = "repu"
                     character.save()
 
             else:
